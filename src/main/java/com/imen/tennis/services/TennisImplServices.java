@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.imen.tennis.entities.Stats;
 import com.imen.tennis.entities.WTA_Tour;
+import com.imen.tennis.repos.ImageRepository;
 import com.imen.tennis.repos.TennisRepository;
 
 @Service
@@ -13,13 +14,30 @@ public class TennisImplServices implements TennisServices {
 
     @Autowired
     TennisRepository tennisRepository;
+    
+    @Autowired
+    ImageRepository imageRepository;
+    
 	@Override
 	public WTA_Tour saveWTA_Tour(WTA_Tour t) {
 	return tennisRepository.save(t);
 	}
+	/*@Override
+	public WTA_Tour updateWTA_Tour(WTA_Tour t) { 
+		return tennisRepository.save(t);
+	}*/
+	
 	@Override
-	public WTA_Tour updateWTA_Tour(WTA_Tour t) { return tennisRepository.save(t);
+	public WTA_Tour updateWTA_Tour(WTA_Tour p) {
+	//Long oldTourImageId = this.getWTA_Tour(p.getIdTour()).getImage().getIdImage();
+	//Long newTourImageId = p.getImage().getIdImage();
+	WTA_Tour TourUpdated = tennisRepository.save(p);
+	
+	//if (oldTourImageId != newTourImageId) //si l'image a été modifiée
+	//imageRepository.deleteById(oldTourImageId);
+	return TourUpdated;
 	}
+	
 	@Override
 	public void deleteWTA_Tour(WTA_Tour t) { tennisRepository.delete(t);
 	}
@@ -46,6 +64,10 @@ public class TennisImplServices implements TennisServices {
 	public List<WTA_Tour> findByNameTour(String name) {
 		return tennisRepository.findByNameTour(name);
 	}
+	
+	
+	
+	
 	@Override
 	public List<WTA_Tour> findByNameTourContains(String name) {
 		return  tennisRepository.findByNameTourContains(name);

@@ -2,6 +2,9 @@ package com.imen.tennis.entities;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class WTA_Tour {
@@ -16,6 +19,18 @@ public class WTA_Tour {
 
     @ManyToOne
     private Stats stats;
+    
+
+	/*@OneToOne
+    private Image image;*/
+    
+	private String imagePath;
+
+	
+	
+    @OneToMany(mappedBy = "wta_Tour", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Image> images;
     // Getters and setters for the fields
     public WTA_Tour(String nameTour, Double dotation, Date dateTour, String courtSurface, String winner) {
 		super();
@@ -27,9 +42,32 @@ public class WTA_Tour {
 	}
     
     
-   
-    
-    public WTA_Tour() {
+    public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+	public WTA_Tour(Long idTour, String nameTour, Double dotation, Date dateTour, String courtSurface, String winner,
+			Stats stats, String imagePath, List<Image> images) {
+		super();
+		this.idTour = idTour;
+		this.nameTour = nameTour;
+		this.dotation = dotation;
+		this.dateTour = dateTour;
+		this.courtSurface = courtSurface;
+		this.winner = winner;
+		this.stats = stats;
+		this.imagePath = imagePath;
+		this.images = images;
+	}
+
+
+	public WTA_Tour() {
     	super();
     	}
     public Long getIdTour() {
@@ -91,6 +129,16 @@ public class WTA_Tour {
 	public String toString() {
 		return "WTA_Tour [idTour=" + idTour + ", stats=" + stats + ", nameTour=" + nameTour + ", dotation=" + dotation
 				+ ", dateTour=" + dateTour + ", courtSurface=" + courtSurface + ", winner=" + winner + "]";
+	}
+
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
     
 }

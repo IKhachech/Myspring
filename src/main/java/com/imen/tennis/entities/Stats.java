@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +16,7 @@ public class Stats {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idStat;
+    
     @Column(name = "name_player")
     private String namePlayer;
     private String nationality;
@@ -22,9 +24,8 @@ public class Stats {
     private int titlesWon;
 
     @OneToMany(mappedBy = "stats")
-    private List<WTA_Tour> wta_Tours;
-    
-  
+    @JsonIgnore
+    private List<WTA_Tour> wta_Tour;
     // Getters and setters for the fields
 
     public Long getIdStat() {
