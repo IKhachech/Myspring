@@ -9,8 +9,11 @@ import com.imen.tennis.entities.Image;
 
 public interface ImageService {
 Image uplaodImage(MultipartFile file) throws IOException;
+
 Image getImageDetails(Long id) throws IOException;
+
 ResponseEntity<byte[]> getImage(Long id) throws IOException;
+
 void deleteImage(Long id);
 
 Image uplaodImageTour(MultipartFile file,Long idTour) throws IOException; 

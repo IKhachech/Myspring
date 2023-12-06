@@ -36,7 +36,8 @@ import java.util.List;
 		public Image getImageDetails(@PathVariable("id") Long id) throws IOException {
 		return imageService.getImageDetails(id) ;
 		}
-		@RequestMapping(value = "/load/{id}" , method = RequestMethod.GET) public ResponseEntity<byte[]> getImage(@PathVariable("id") Long id) throws IOException { return imageService.getImage(id);
+		@RequestMapping(value = "/load/{id}" , method = RequestMethod.GET) 
+		public ResponseEntity<byte[]> getImage(@PathVariable("id") Long id) throws IOException { return imageService.getImage(id);
 		}
 		@RequestMapping(value = "/delete/{id}" , method = RequestMethod.DELETE)
 		public void deleteImage(@PathVariable("id") Long id){

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +28,6 @@ private String name ;
 private String type ;
 
 
-
 @Column( name = "IMAGE" , length = 4048576 )
 @Lob
 private byte[] image;
@@ -35,5 +35,7 @@ private byte[] image;
 
 @ManyToOne
 @JsonIgnore
+@JoinColumn(name = "wta_tour_id_tour")  // Assurez-vous que le nom de la colonne est correct
 private WTA_Tour wta_Tour;
 }
+

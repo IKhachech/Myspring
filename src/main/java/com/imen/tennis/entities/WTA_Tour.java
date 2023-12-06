@@ -28,9 +28,10 @@ public class WTA_Tour {
 
 	
 	
-    @OneToMany(mappedBy = "wta_Tour", fetch = FetchType.EAGER)
-    @JsonIgnore
-    private List<Image> images;
+	@OneToMany(mappedBy = "wta_Tour", fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<Image> images;
+
     // Getters and setters for the fields
     public WTA_Tour(String nameTour, Double dotation, Date dateTour, String courtSurface, String winner) {
 		super();

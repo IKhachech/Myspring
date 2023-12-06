@@ -58,7 +58,7 @@ public class ImageServiceImpl implements ImageService{
 	@Override
 	public Image uplaodImageTour(MultipartFile file,Long idTour)
 	throws IOException {
-    WTA_Tour  p = new WTA_Tour ();
+    WTA_Tour  p = new WTA_Tour();
 	p.setIdTour(idTour);
 	return imageRepository.save(Image.builder()
 	.name(file.getOriginalFilename())
@@ -66,10 +66,12 @@ public class ImageServiceImpl implements ImageService{
 	.image(file.getBytes())
 	.wta_Tour(p).build() );
 	}
+	
+	
 	@Override
 	public List<Image> getImagesParTour(Long tourId) {	
-		WTA_Tour p = tennisRepository.findById(tourId).get();
-		return p.getImages();
+	WTA_Tour p = tennisRepository.findById(tourId).get();
+	 return p.getImages();
 	}
 	
 	

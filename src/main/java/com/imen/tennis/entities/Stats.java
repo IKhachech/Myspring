@@ -23,10 +23,15 @@ public class Stats {
     private int ranking;
     private int titlesWon;
 
-    @OneToMany(mappedBy = "stats")
-    @JsonIgnore
-    private List<WTA_Tour> wta_Tour;
-    // Getters and setters for the fields
+    
+    @ManyToOne
+    private Stats stats;
+    
+    
+    @OneToMany (mappedBy = "wta_Tour")
+    private List<Image> images;
+
+    
 
     public Long getIdStat() {
         return idStat;
