@@ -24,13 +24,10 @@ public class Stats {
     private int titlesWon;
 
     
-    @ManyToOne
-    private Stats stats;
-    
-    
-    @OneToMany (mappedBy = "wta_Tour")
-    private List<Image> images;
-
+     @OneToMany(mappedBy = "stats")
+    @JsonIgnore
+    private List<WTA_Tour> wta_Tour;
+    // Getters and setters for the fields
     
 
     public Long getIdStat() {

@@ -29,7 +29,6 @@ public class WTA_Tour {
 	
 	
 	@OneToMany(mappedBy = "wta_Tour", fetch = FetchType.EAGER)
-	@JsonIgnore
 	private List<Image> images;
 
     // Getters and setters for the fields

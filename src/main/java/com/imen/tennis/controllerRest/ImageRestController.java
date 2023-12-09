@@ -10,7 +10,7 @@ package com.imen.tennis.controllerRest;
 import java.util.List;
 	@RestController
 	@RequestMapping("/api/image")
-	@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public class ImageRestController {
 		@Autowired
 		ImageService imageService ;
@@ -48,6 +48,21 @@ import java.util.List;
 		return imageService.uplaodImage(file);
 		}
 		
+				@RequestMapping(value = "/uploadFS/{id}" , method = RequestMethod.POST)
+		public void uploadImageFS(@RequestParam("image") MultipartFile file,@PathVariable("id") Long id) throws IOException {
+		WTA_Tour p = tennisService.getWTA_Tour(id);
+		p.setImagePath(id+".jpg");
+		Files.write(Paths.get(System.getProperty("user.home")+"/images/"+p.getImagePath()), file.getBytes());
+		tennisService.saveWTA_Tour(p);
+		}
+		
+		@RequestMapping(value = "/loadfromFS/{id}" ,
+		method = RequestMethod.GET,
+		produces = MediaType.IMAGE_JPEG_VALUE)
+		public byte[] getImageFS(@PathVariable("id") Long id) throws IOException {
+		WTA_Tour p = tennisService.getWTA_Tour(id);
+		return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/images/"+p.getImagePath()));
+		}
 		
 		
 		}

@@ -35,7 +35,6 @@ private byte[] image;
 
 @ManyToOne
 @JsonIgnore
-@JoinColumn(name = "wta_tour_id_tour")  // Assurez-vous que le nom de la colonne est correct
 private WTA_Tour wta_Tour;
 }
 

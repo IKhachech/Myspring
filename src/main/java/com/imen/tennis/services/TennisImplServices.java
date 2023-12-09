@@ -43,8 +43,25 @@ public class TennisImplServices implements TennisServices {
 	}
 	@Override
 	public void deleteWTA_TourById(Long id) {
+		WTA_Tour p = getWTA_Tour(id);
+		//suuprimer l'image avant de supprimer le produit
+		//try {
+		//Files.delete(Paths.get(System.getProperty("user.home")+"/images/"+p.getImagePath()));
+		//} catch (IOException e) {
+		//e.printStackTrace();
+		//}
+		if (p != null) {
+	        // Iterate over the list of images and delete each one
+	       List<Image> images = p.getImages();
+	        if (images != null) {
+	            for (Image image : images) {
+	                 //delete the image from the database
+	                imageRepository.deleteById(image.getIdImage()); // Assuming Image entity has an id field
+	           }
+	        }
+		
 		tennisRepository.deleteById(id);
-	}
+	}}
 	@Override
 	public WTA_Tour getWTA_Tour(Long id) { return tennisRepository.findById(id).get();
 	}
